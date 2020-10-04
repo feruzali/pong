@@ -1,4 +1,5 @@
 import turtle
+import time
 
 window = turtle.Screen()
 window.title('PingPong Game')
@@ -86,31 +87,24 @@ while True:
 	if ball.xcor() > 390:
 		ball.goto(0, 0)
 		ball.dx *= -1
-		scoreA = 0
-		scoreB = 0
+		scoreA +=1
 		pen.clear()
 		pen.write('Player A: {}  Player B: {}'.format(scoreA, scoreB), align='center', font=('Courier', 24, 'normal'))
 
 	if ball.xcor() < -390:
 		ball.goto(0, 0)
 		ball.dx *= -1
-		scoreA = 0
-		scoreB = 0
+		scoreB += 1
 		pen.clear()
 		pen.write('Player A: {}  Player B: {}'.format(scoreA, scoreB), align='center', font=('Courier', 24, 'normal'))
-
 
 
 	if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddleB.ycor() + 40 and ball.ycor() > paddleB.ycor() - 40):
 		ball.setx(340)
 		ball.dx *= -1
-		scoreA +=1
-		pen.clear()
-		pen.write('Player A: {}  Player B: {}'.format(scoreA, scoreB), align='center', font=('Courier', 24, 'normal'))
 
 	if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddleA.ycor() + 40 and ball.ycor() > paddleA.ycor() - 40):
 		ball.setx(-340)
 		ball.dx *= -1	
-		scoreB += 1
-		pen.clear()
-		pen.write('Player A: {}  Player B: {}'.format(scoreA, scoreB), align='center', font=('Courier', 24, 'normal'))
+
+	time.sleep(0.005)

@@ -54,6 +54,15 @@ def paddleA_down():
 	y = paddleA.ycor()
 	y -= 20
 	paddleA.sety(y)
+def paddleA_right():
+	x = paddleA.xcor()
+	x += 20
+	paddleA.setx(x)
+def paddleA_left():
+	x = paddleA.xcor()
+	x -= 20
+	paddleA.setx(x)
+
 
 def paddleB_up():
 	y = paddleB.ycor()
@@ -63,13 +72,25 @@ def paddleB_down():
 	y = paddleB.ycor()
 	y -= 20
 	paddleB.sety(y)
+def paddleB_right():
+	x = paddleB.xcor()
+	x += 20
+	paddleB.setx(x)
+def paddleB_left():
+	x = paddleB.xcor()
+	x -= 20
+	paddleB.setx(x)
 
 window.listen()
 window.onkeypress(paddleA_up, 'w')
 window.onkeypress(paddleA_down, 's')
+window.onkeypress(paddleA_right, 'd')
+window.onkeypress(paddleA_left, 'a')
 
 window.onkeypress(paddleB_up, 'Up')
 window.onkeypress(paddleB_down, 'Down')
+window.onkeypress(paddleB_right, 'Right')
+window.onkeypress(paddleB_left, 'Left')
 
 while True:
 	window.update()
@@ -99,12 +120,12 @@ while True:
 		pen.write('Player A: {}  Player B: {}'.format(scoreA, scoreB), align='center', font=('Courier', 24, 'normal'))
 
 
-	if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddleB.ycor() + 40 and ball.ycor() > paddleB.ycor() - 40):
-		ball.setx(340)
+	if (ball.xcor() > paddleB.xcor() - 10 and ball.xcor() < paddleB.xcor()) and (ball.ycor() < paddleB.ycor() + 40 and ball.ycor() > paddleB.ycor() - 40):
+		ball.setx(paddleB.xcor() - 10)
 		ball.dx *= -1
 
-	if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddleA.ycor() + 40 and ball.ycor() > paddleA.ycor() - 40):
-		ball.setx(-340)
+	if (ball.xcor() < paddleA.xcor() + 10 and ball.xcor() > paddleA.xcor()) and (ball.ycor() < paddleA.ycor() + 40 and ball.ycor() > paddleA.ycor() - 40):
+		ball.setx(paddleA.xcor() + 10)
 		ball.dx *= -1	
 
 	if paddleA.ycor() + 40 > 290:
@@ -115,6 +136,16 @@ while True:
 	if paddleB.ycor() + 40 > 290:
 		paddleB.sety(250) 
 	if paddleB.ycor() - 40 < -290:
-		paddleB.sety(-250) 	
+		paddleB.sety(-250) 
+
+	if paddleA.xcor() > -250:
+		paddleA.setx(-250)
+	if paddleA.xcor() < -350:
+		paddleA.setx(-350)
+
+	if paddleB.xcor() < 250:
+		paddleB.setx(250)
+	if paddleB.xcor() > 350:
+		paddleB.setx(350)
 
 	time.sleep(0.005)

@@ -107,4 +107,14 @@ while True:
 		ball.setx(-340)
 		ball.dx *= -1	
 
+	if paddleA.ycor() + 40 > 290:
+		paddleA.sety(250) 
+	if paddleA.ycor() - 40 < -290:
+		paddleA.sety(-250) 	
+
+	if paddleB.ycor() + 40 > 290:
+		paddleB.sety(250) 
+	if paddleB.ycor() - 40 < -290:
+		paddleB.sety(-250) 	
+
 	time.sleep(0.005)
